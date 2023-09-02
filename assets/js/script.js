@@ -26,17 +26,17 @@ var today = dayjs();
 
 
 
-//load saved data from LocalStorage for each hour created
-$("#hour9 .description").val(localStorage.getItem("hour8"));
-$("#hour10 .description").val(localStorage.getItem("hour9"));
-$("#hour11 .description").val(localStorage.getItem("hour10"));
-$("#hour12 .description").val(localStorage.getItem("hour11"));
-$("#hour13 .description").val(localStorage.getItem("hour12"));
-$("#hour14 .description").val(localStorage.getItem("hour13"));
-$("#hour15 .description").val(localStorage.getItem("hour14"));
-$("#hour16 .description").val(localStorage.getItem("hour15"));
-$("#hour17 .description").val(localStorage.getItem("hour16"));
-$("#hour18 .description").val(localStorage.getItem("hour17"));
+//load saved data from LocalStorage for each hour creatEd
+$("#hour-9 .description").val(localStorage.getItem("hour-9"));
+$("#hour-10 .description").val(localStorage.getItem("hour-10"));
+$("#hour-11 .description").val(localStorage.getItem("hour-11"));
+$("#hour-12 .description").val(localStorage.getItem("hour-12"));
+$("#hour-13 .description").val(localStorage.getItem("hour-13"));
+$("#hour-14 .description").val(localStorage.getItem("hour-14"));
+$("#hour-15 .description").val(localStorage.getItem("hour-15"));
+$("#hour-16 .description").val(localStorage.getItem("hour-16"));
+$("#hour-17 .description").val(localStorage.getItem("hour-17"));
+$("#hour-18 .description").val(localStorage.getItem("hour-18"));
 
 
 
@@ -44,19 +44,18 @@ $("#hour18 .description").val(localStorage.getItem("hour17"));
 
 //create a function to determine if the time blocks are past, present, or future
 function tense() {
-  // Get current time using Moment.js
-  var currentTime = moment().hour();
+  var currentTime = dayjs();
 
   // Loop over time blocks
   $(".time-block").each(function () {
-    var blockTime = parseInt($(this).attr("id").split("hour")[1]);
+    var blockTime = parseInt($(this).attr("id").split("hour-")[1]);
 
     // Check to see what tense we are in
-    if (blockTime < currentTime) {
+    if (blockTime < currentTime.hour()) {
       $(this).addClass("past");
       $(this).removeClass("future");
       $(this).removeClass("present");
-    } else if (blockTime === currentTime) {
+    } else if (blockTime === currentTime.hour()) {
       $(this).removeClass("past");
       $(this).removeClass("future");
       $(this).addClass("present");
