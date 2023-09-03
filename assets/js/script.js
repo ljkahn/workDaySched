@@ -1,7 +1,7 @@
 //tells browser to load the html and css first
 $(document).ready(function() {
  
-  
+
 //display current day
 var today = dayjs();
   $("#currentDay").text(today.format("MMM D, YYYY [at] hh:mm:ss a"));
@@ -25,59 +25,49 @@ var today = dayjs();
 });
 
 
-$("#hour8 .description").val(localStorage.getItem("hour8"));
-$("#hour9 .description").val(localStorage.getItem("hour9"));
-$("#hour10 .description").val(localStorage.getItem("hour10"));
-$("#hour11 .description").val(localStorage.getItem("hour11"));
-$("#hour12 .description").val(localStorage.getItem("hour12"));
-$("#hour13 .description").val(localStorage.getItem("hour13"));
-$("#hour14 .description").val(localStorage.getItem("hour14"));
-$("#hour15 .description").val(localStorage.getItem("hour15"));
-$("#hour16 .description").val(localStorage.getItem("hour16"));
-$("#hour17 .description").val(localStorage.getItem("hour17"));
+
+//load saved data from LocalStorage for each hour created
+$("#hour9 .description").val(localStorage.getItem("hour8"));
+$("#hour10 .description").val(localStorage.getItem("hour9"));
+$("#hour11 .description").val(localStorage.getItem("hour10"));
+$("#hour12 .description").val(localStorage.getItem("hour11"));
+$("#hour13 .description").val(localStorage.getItem("hour12"));
+$("#hour14 .description").val(localStorage.getItem("hour13"));
+$("#hour15 .description").val(localStorage.getItem("hour14"));
+$("#hour16 .description").val(localStorage.getItem("hour15"));
+$("#hour17 .description").val(localStorage.getItem("hour16"));
+$("#hour18 .description").val(localStorage.getItem("hour17"));
+
+
+
 
 
 //create a function to determine if the time blocks are past, present, or future
-    function tense() {
-      //get current time
-      var currentTime = moment().hour();
+function tense() {
+  // Get current time using Moment.js
+  var currentTime = moment().hour();
 
-      //loop over time blocks
-      $(".time-block").each(function() {
-        var blockTime = parseInt($(this).attr("id").split("hour")[1]);
-        console.log(blockTime, currentTime)
+  // Loop over time blocks
+  $(".time-block").each(function () {
+    var blockTime = parseInt($(this).attr("id").split("hour")[1]);
 
-        //check to see what tense we are in
-        if (blockTime < currentTime) {
-          $(this).addClass("past");
-          $(this).removeClass("future");
-          $(this).removeClass("present");
-        } else if (blockTime === currentTime) {
-          $(this).removeClass("past");
-          $(this).addClass("future");
-          $(this).removeClass("present");
-        } else {
-          $(this).removeClass("past");
-          $(this).removeClass("future");
-          $(this).addClass("present");
-
-          //re-run function
-          tense();
-        }
-      })
+    // Check to see what tense we are in
+    if (blockTime < currentTime) {
+      $(this).addClass("past");
+      $(this).removeClass("future");
+      $(this).removeClass("present");
+    } else if (blockTime === currentTime) {
+      $(this).removeClass("past");
+      $(this).removeClass("future");
+      $(this).addClass("present");
+    } else {
+      $(this).removeClass("past");
+      $(this).removeClass("present");
+      $(this).addClass("future");
+    }
+  });
+}
 
 
-    // if (calTime.isBefore(today)) {
-    //   timeBlock.addClass("past");
-    // } else if (projectDate.isSame(today)) {
-    //   timeBlock.addClass("present");
-    // } else if (projectDate.isAfter(today)) {
-    //   timeBlock.addClass("future")
-    // }
-
-    // console.log(tense);
-  };
-
-
-
-// saveBtn.addEventListener("click", userInput);
+  //re-run function
+  tense();
