@@ -8,5 +8,5 @@ This work day scheduler is designed to help the user with scheduling their day b
 
 To use this calendar simply start typing in the time blocks. You can save your info using the save icons on the right side of the rows.
 
-    (./assets/images/Screenshot%202023-09-02%20at%202.31.51%20PM.png)
+    ![Alt Text](./assets/images/Screenshot%202023-09-02%20at%202.31.51%20PM.png)
     ![Alt text](./assets/images/Screenshot%202023-09-02%20at%202.32.00%20PM.png)
